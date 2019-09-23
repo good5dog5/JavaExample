@@ -1,11 +1,11 @@
-package com.shark;
+package com.shark.example;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Invest {
+public class InvestInterestExample {
 
     public static void main(String[] args) {
         int firstInvest = 10000;
