@@ -1,4 +1,4 @@
-package com.shark.example.parser;
+package com.shark.example.parserSentence;
 
 import java.util.ArrayList;
 import java.util.HashMap;

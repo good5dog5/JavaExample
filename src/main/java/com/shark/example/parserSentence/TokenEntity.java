@@ -1,4 +1,4 @@
-package com.shark.example.parser;
+package com.shark.example.parserSentence;
 
 import lombok.Builder;
 import lombok.Data;
