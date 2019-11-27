@@ -11,7 +11,7 @@ import java.util.List;
 
 public class SegmentExample {
     public static void main(String argv[]) {
-        String sentence = "比較美國和中國和日本的收入";
+        String sentence = "美國和中國和日本的收入比較";
         System.out.println("sentence: " + sentence);
         Segment segment = new Segment();
         segment.addTokenList(Arrays.asList("國家", "收入"), TokenType.COLUMN);
