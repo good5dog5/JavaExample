@@ -1,0 +1,4 @@
+Date,Customer Age,Customer Gender,Country,Province,Category,Product,Quantity,Unit Cost,Unit Price,Cost,Revenue,Profit,Event
+2018-01-01,35,M,中國,北京,Accessories,Bottles and Cages,1,234.0,305.0,234.0,305.0,71.0,原價
+2018-01-01,20,M,中國,北京,Accessories,Bottles and Cages,3,70.0,82.0,210.0,246.0,36.0,
+2018-01-01,44,M,中國,上海,Accessories,Bottles and Cages,1,190.0,250.0,190.0,250.0,60.0,原價

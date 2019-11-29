@@ -2,7 +2,7 @@ package com.shark.example.csv;
 
 import java.io.*;
 
-public class CsvExample {
+public class CreateCsvExample {
     public static void main(String argv[]) throws IOException {
         FileWriter csvWriter = new FileWriter("file/big.csv");
         BufferedReader csvReader = new BufferedReader(new FileReader("file/supermarket_sales.csv"));

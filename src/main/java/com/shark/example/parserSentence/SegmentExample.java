@@ -1,6 +1,7 @@
 package com.shark.example.parserSentence;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.shark.example.parserSentence.grammar.Grammar;
 import com.shark.example.parserSentence.grammar.GrammarParser;
 import com.shark.example.parserSentence.grammar.GrammarTreeNode;
@@ -36,10 +37,14 @@ public class SegmentExample {
         grammarHashMap.put("values", new Grammar(Arrays.asList(Arrays.asList("value"), Arrays.asList("value", "conjunction", "values")), null ));
         grammarHashMap.put("data",
                 new Grammar(Arrays.asList(Arrays.asList("values", "conjunction", "column")), null));
-        System.out.println("grammarHashMap: " + new Gson().toJson(grammarHashMap));
+
+        Gson gson = new Gson();
+        String grammarHashMapJson = gson.toJson(grammarHashMap);
+        System.out.println("grammarHashMap: " + grammarHashMapJson);
+        HashMap<String, Grammar> newGrammarHashMap = gson.fromJson(grammarHashMapJson, new TypeToken<HashMap<String, Grammar>>(){}.getType());
 
         GrammarParser grammarParser = new GrammarParser();
-        GrammarTreeNode result = grammarParser.start(grammarHashMap, tokenEntityList);
+        GrammarTreeNode result = grammarParser.start(newGrammarHashMap, tokenEntityList);
         System.out.println("result: " + new Gson().toJson(result));
 
 
