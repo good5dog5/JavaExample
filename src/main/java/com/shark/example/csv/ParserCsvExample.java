@@ -14,7 +14,7 @@ public class ParserCsvExample {
     public static void main(String argv[]) throws IOException {
         long startTime = System.currentTimeMillis();
 //        FileReader fileReader = new FileReader("file/big.csv");
-        File file = new File("file/SalesForCourse_CN_BIG5_test.csv");
+        File file = new File("file/big.csv");
         byte[] buff = new byte[4096];
         FileInputStream fileInputStream = new FileInputStream(file);
         UniversalDetector detector = new UniversalDetector(null);
@@ -30,7 +30,9 @@ public class ParserCsvExample {
         }
         detector.reset();
         System.out.println("encoding: " + encoding);
-        FileReader fileReader = new FileReader("file/SalesForCourse_CN_BIG5_test.csv", Charset.forName(encoding));
+//        long endTime = System.currentTimeMillis();
+//        System.out.println("total time: " + (endTime - startTime));
+        FileReader fileReader = new FileReader("file/big.csv", Charset.forName(encoding));
         CSVReader csvReader = new CSVReader(fileReader);
         String[] nextRecord;
         while ((nextRecord = csvReader.readNext()) != null) {

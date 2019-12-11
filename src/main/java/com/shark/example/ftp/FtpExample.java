@@ -1,4 +1,4 @@
-package com.shark.example;
+package com.shark.example.ftp;
 
 
 import org.apache.commons.net.ftp.FTPClient;
