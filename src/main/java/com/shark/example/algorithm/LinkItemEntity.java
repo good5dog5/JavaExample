@@ -1,4 +1,4 @@
-package com.shark.example.circle;
+package com.shark.example.algorithm;
 
 public class LinkItemEntity {
     private String source;

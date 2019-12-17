@@ -1,12 +1,9 @@
 package com.shark.example.excel;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.poifs.filesystem.FileMagic;
-import org.apache.poi.poifs.filesystem.NPOIFSFileSystem;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,9 +11,6 @@ import java.io.IOException;
 public class CheckExcelFileExample {
 
     public static void main(String[] argv) {
-
-
-
         try {
             Workbook workbook = WorkbookFactory.create(new FileInputStream("file/building_materials.xlsx"));
             if(workbook == null) {
@@ -43,9 +37,8 @@ public class CheckExcelFileExample {
             e.printStackTrace();
         }
 
-
         try {
-            FileMagic fm = FileMagic.valueOf(FileMagic.prepareToCheckMagic(new FileInputStream("file/building_materials.numbers")));
+            FileMagic fm = FileMagic.valueOf(FileMagic.prepareToCheckMagic(new FileInputStream("file/xls.xls")));
             switch(fm) {
                 case OLE2:
                     System.out.println("OLE2");
@@ -61,9 +54,8 @@ public class CheckExcelFileExample {
             e.printStackTrace();
         }
 
-
         try {
-            FileMagic fm = FileMagic.valueOf(FileMagic.prepareToCheckMagic(new FileInputStream("file/building_materials.xlsx")));
+            FileMagic fm = FileMagic.valueOf(FileMagic.prepareToCheckMagic(new FileInputStream("file/time_error.xlsx")));
             switch(fm) {
                 case OLE2:
                     System.out.println("OLE2");

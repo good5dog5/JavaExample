@@ -1,35 +1,14 @@
-package com.shark.example.circle;
+package com.shark.example.algorithm;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckCircleExample2 {
+public class FindCircleExample {
 
     public static void main(String argv[]) {
         List<LinkItemEntity> linkItemEntityList = new ArrayList<>();
-//        LinkItemEntity link1 = new LinkItemEntity("53949453", "12348888");
-//        linkItemEntityList.add(link1);
-//        LinkItemEntity link2 = new LinkItemEntity("53945421", "12348888");
-//        linkItemEntityList.add(link2);
-//        LinkItemEntity link3 = new LinkItemEntity("53915637", "12348888");
-//        linkItemEntityList.add(link3);
-//        LinkItemEntity link4 = new LinkItemEntity("03077208", "53949453");
-//        linkItemEntityList.add(link4);
-//        LinkItemEntity link5 = new LinkItemEntity("52962983", "53949453");
-//        linkItemEntityList.add(link5);
-//        LinkItemEntity link6 = new LinkItemEntity("03077208", "53945421");
-//        linkItemEntityList.add(link6);
-//        LinkItemEntity link7 = new LinkItemEntity("12348888", "53949453");
-//        linkItemEntityList.add(link7);
-//        LinkItemEntity link8 = new LinkItemEntity("53949453", "08628407");
-//        linkItemEntityList.add(link8);
-//        LinkItemEntity link9 = new LinkItemEntity("53949453", "03077208");
-//        linkItemEntityList.add(link9);
-//        LinkItemEntity link10 = new LinkItemEntity("53949453", "52962983");
-//        linkItemEntityList.add(link10);
-
         LinkItemEntity link1 = new LinkItemEntity("a", "d");
         linkItemEntityList.add(link1);
         LinkItemEntity link2 = new LinkItemEntity("b", "a");
@@ -42,7 +21,6 @@ public class CheckCircleExample2 {
         linkItemEntityList.add(link5);
         LinkItemEntity link6 = new LinkItemEntity("e", "b");
         linkItemEntityList.add(link6);
-
         checkCircle(linkItemEntityList);
         System.out.println(new Gson().toJson(linkItemEntityList));
     }

@@ -8,59 +8,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
-public class ExcelExample {
+public class ReadExcelExample {
 
-    private static final String FILE_PATH = "example.xlsx";
+    private static final String FILE_PATH = "file/quote.xlsx";
 
 
     public static void main(String[] argv) {
-        createWorkBook();
         readWorkBook();
-    }
-
-    private static void createWorkBook() {
-        Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("sheet");
-        String[] columns = {"number", "square"};
-        Row headerRow = sheet.createRow(0);
-        for (int i = 0; i < columns.length; i++) {
-            Cell cell = headerRow.createCell(i);
-            cell.setCellValue(columns[i]);
-        }
-        int rowIndex = 1;
-        for (int i = 0; i < 100; i++) {
-            Row row = sheet.createRow(rowIndex);
-            row.createCell(0).setCellValue(String.valueOf(i));
-            row.createCell(1).setCellValue(String.valueOf(i * i));
-            rowIndex = rowIndex + 1;
-        }
-        FileOutputStream fileOutputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream(FILE_PATH);
-            workbook.write(fileOutputStream);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fileOutputStream != null) {
-                try {
-                    fileOutputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            try {
-                workbook.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private static void readWorkBook() {
         try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Workbook workbook = WorkbookFactory.create(new File(FILE_PATH));
             Sheet sheet = workbook.getSheetAt(0);
             int rowCount = sheet.getPhysicalNumberOfRows();
@@ -85,7 +46,7 @@ public class ExcelExample {
                             break;
                         case NUMERIC:
                             if (DateUtil.isCellDateFormatted(cell)) {
-                                stringBuilder.append(cell.getDateCellValue());
+                                stringBuilder.append(simpleDateFormat.format(cell.getDateCellValue()));
                             } else {
                                 stringBuilder.append(cell.getNumericCellValue());
                             }
