@@ -9,10 +9,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
 
 public class ReadExcelExample {
 
-    private static final String FILE_PATH = "file/quote.xlsx";
+    private static final String FILE_PATH = "file/xls.xls";
 
 
     public static void main(String[] argv) {
@@ -24,18 +25,20 @@ public class ReadExcelExample {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Workbook workbook = WorkbookFactory.create(new File(FILE_PATH));
             Sheet sheet = workbook.getSheetAt(0);
-            int rowCount = sheet.getPhysicalNumberOfRows();
-            System.out.println("readWorkBook rowCount: " + rowCount);
-            for (int i = 0; i < rowCount; i++) {
-                Row row = sheet.getRow(i);
-                int cellCount = row.getPhysicalNumberOfCells();
+            Iterator<Row> rowIterator = sheet.rowIterator();
+            int i = 0;
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("[");
-                for (int j = 0; j < cellCount; j++) {
+                Iterator<Cell> cellIterator = row.cellIterator();
+
+                int j = 0;
+                while (cellIterator.hasNext()) {
                     if (j != 0) {
                         stringBuilder.append(", ");
                     }
-                    Cell cell = row.getCell(j);
+                    Cell cell = cellIterator.next();
                     switch (cell.getCellTypeEnum()) {
                         case BOOLEAN:
                             stringBuilder.append(cell.getBooleanCellValue());
@@ -58,9 +61,11 @@ public class ReadExcelExample {
                         default:
                             break;
                     }
+                    j++;
                 }
                 stringBuilder.append("]");
                 System.out.println("row: " + i + ", cell: " + stringBuilder.toString());
+                i ++;
             }
         } catch (IOException e) {
             e.printStackTrace();

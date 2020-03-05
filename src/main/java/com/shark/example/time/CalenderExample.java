@@ -1,10 +1,14 @@
 package com.shark.example.time;
 
+import com.google.gson.Gson;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.MonthDay;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class CalenderExample {
     public static void main(String[] argv) {
@@ -18,17 +22,20 @@ public class CalenderExample {
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         Calendar calendar = Calendar.getInstance();
-        System.out.println("CURRENT: " + simpleDateFormat.format(calendar.getTime()));
+        String today = simpleDateFormat.format(calendar.getTime());
+        System.out.println("today: " + today);
+        long currentTime = calendar.getTimeInMillis();
+        System.out.println("currentTime: " + currentTime);
+        //two week ago date
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-        System.out.println("DAY_OF_WEEK: " + simpleDateFormat.format(calendar.getTime()));
         calendar.add(Calendar.WEEK_OF_MONTH, -2);
-        System.out.println("TWO WEEK AGE: " + simpleDateFormat.format(calendar.getTime()));
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        calendar.set(Calendar.SECOND, 0);
-        System.out.println("week1Calendar: " + simpleDateFormat.format(calendar.getTime()));
+        List<String> timeList = new ArrayList<>();
+        while (calendar.getTimeInMillis() <= currentTime) {
+            timeList.add(simpleDateFormat.format(calendar.getTime()));
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+        }
+        System.out.println(new Gson().toJson(timeList));
     }
 }

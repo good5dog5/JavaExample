@@ -1,4 +1,4 @@
-package com.shark.example;
+package com.shark.example.list;
 
 import java.util.ArrayList;
 import java.util.List;
