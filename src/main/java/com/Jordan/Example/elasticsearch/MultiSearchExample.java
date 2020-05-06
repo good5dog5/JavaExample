@@ -1,4 +1,4 @@
-package com.shark.example.elasticsearch;
+package com.Jordan.Example.elasticsearch;
 
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.search.MultiSearchRequest;

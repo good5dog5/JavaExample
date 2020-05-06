@@ -1,4 +1,4 @@
-package com.shark.example.parserSql.entity;
+package com.Jordan.Example.parserSql.entity;
 
 import lombok.Builder;
 import lombok.Data;

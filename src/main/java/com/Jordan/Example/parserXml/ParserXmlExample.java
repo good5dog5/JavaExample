@@ -1,4 +1,4 @@
-package com.shark.example.parserXml;
+package com.Jordan.Example.parserXml;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;

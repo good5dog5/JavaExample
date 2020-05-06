@@ -1,4 +1,4 @@
-package com.shark.example;
+package com.Jordan.Example;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

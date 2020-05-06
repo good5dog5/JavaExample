@@ -1,7 +1,7 @@
-package com.shark.example.parserSql;
+package com.Jordan.Example.parserSql;
 
-import com.shark.example.parserSql.entity.*;
-import com.shark.example.parserSql.util.SqlUtil;
+import com.Jordan.Example.parserSql.entity.*;
+import com.Jordan.Example.parserSql.util.SqlUtil;
 
 import java.util.Arrays;
 

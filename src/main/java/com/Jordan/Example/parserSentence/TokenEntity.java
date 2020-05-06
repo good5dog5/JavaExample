@@ -1,4 +1,4 @@
-package com.shark.example.parserSentence;
+package com.Jordan.Example.parserSentence;
 
 import lombok.Builder;
 import lombok.Data;

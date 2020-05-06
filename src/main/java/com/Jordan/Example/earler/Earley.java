@@ -1,4 +1,4 @@
-package com.shark.example.earler;
+package com.Jordan.Example.earler;
 
 import com.google.gson.Gson;
 

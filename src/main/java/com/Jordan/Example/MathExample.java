@@ -1,4 +1,4 @@
-package com.shark.example;
+package com.Jordan.Example;
 
 public class MathExample {
     public static void main(String[] argv) {

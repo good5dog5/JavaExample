@@ -1,4 +1,4 @@
-package com.shark.example;
+package com.Jordan.Example;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

@@ -1,4 +1,4 @@
-package com.shark.example.kafka;
+package com.Jordan.Example.kafka;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;

@@ -1,13 +1,9 @@
-package com.shark.example.postgres;
+package com.Jordan.Example.postgres;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Map;
-import java.util.Spliterators;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class StreamingExample {
 
@@ -16,10 +12,11 @@ public class StreamingExample {
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager
-                    .getConnection("jdbc:postgresql://pg.dev.sis.ai:5432/sygps", "shark", "123");
+                    .getConnection("jdbc:postgresql://192.168.66.79:5432/fu_glass", "postgres", "synergies");
             Statement statement = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            statement.setFetchSize(Integer.MIN_VALUE);
-            ResultSet resultSet= statement.executeQuery("select * from  tb_595f8b18567848369a457d277b71ff01");
+//            statement.setFetchSize(Integer.MIN_VALUE);
+            ResultSet resultSet= statement.executeQuery("select * from  process_info");
+            System.out.println(resultSet);
 
 
             connection.close();

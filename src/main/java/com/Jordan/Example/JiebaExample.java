@@ -1,4 +1,4 @@
-package com.shark.example;
+package com.Jordan.Example;
 
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import com.huaban.analysis.jieba.SegToken;

@@ -1,8 +1,7 @@
-package com.shark.example.parserSentence.grammar;
+package com.Jordan.Example.parserSentence.grammar;
 
-import com.shark.example.parserSentence.TokenEntity;
+import com.Jordan.Example.parserSentence.TokenEntity;
 
-import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

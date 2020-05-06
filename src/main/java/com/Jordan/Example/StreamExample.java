@@ -1,4 +1,4 @@
-package com.shark.example;
+package com.Jordan.Example;
 
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class StreamExample {
     public static void main(String[] argv) {
         List<String> stringList = Arrays.asList("abc", "", "bc", "efg", "abcd", "", "jkl");
-        long count = stringList.stream().filter(string -> string.isEmpty()).count();
+        long count = stringList.stream().filter(String::isEmpty).count();
         System.out.println("空字串數量： " + count);
 
         count = stringList.stream().filter(string -> string.length() == 3).count();

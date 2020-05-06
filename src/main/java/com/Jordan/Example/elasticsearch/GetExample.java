@@ -1,4 +1,4 @@
-package com.shark.example.elasticsearch;
+package com.Jordan.Example.elasticsearch;
 
 import com.google.gson.Gson;
 import org.apache.http.HttpHost;

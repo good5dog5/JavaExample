@@ -1,4 +1,4 @@
-package com.shark.example.csv;
+package com.Jordan.Example.csv;
 
 import com.opencsv.CSVParser;
 import com.opencsv.CSVReader;

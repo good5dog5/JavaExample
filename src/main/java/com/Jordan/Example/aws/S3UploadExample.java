@@ -1,4 +1,4 @@
-package com.shark.example.aws;
+package com.Jordan.Example.aws;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;

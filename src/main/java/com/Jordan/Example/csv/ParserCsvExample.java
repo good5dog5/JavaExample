@@ -1,4 +1,4 @@
-package com.shark.example.csv;
+package com.Jordan.Example.csv;
 
 import com.opencsv.CSVReader;
 import org.mozilla.universalchardet.UniversalDetector;
@@ -33,16 +33,16 @@ public class ParserCsvExample {
         System.out.println("encoding: " + encoding);
 //        long endTime = System.currentTimeMillis();
 //        System.out.println("total time: " + (endTime - startTime));
-        FileReader fileReader = new FileReader("file/" + fileName, Charset.forName(encoding));
-        CSVReader csvReader = new CSVReader(fileReader);
-        String[] nextRecord;
-        while ((nextRecord = csvReader.readNext()) != null) {
-            for (String cell : nextRecord) {
-                System.out.println("cell: " + cell);
-            }
-        }
-        csvReader.close();
-        long endTime = System.currentTimeMillis();
-        System.out.println("total time: " + (endTime - startTime));
+//        FileReader fileReader = new FileReader("file/" + fileName, Charset.forName(encoding));
+//        CSVReader csvReader = new CSVReader(fileReader);
+//        String[] nextRecord;
+//        while ((nextRecord = csvReader.readNext()) != null) {
+//            for (String cell : nextRecord) {
+//                System.out.println("cell: " + cell);
+//            }
+//        }
+//        csvReader.close();
+//        long endTime = System.currentTimeMillis();
+        System.out.println("total time: ");
     }
 }

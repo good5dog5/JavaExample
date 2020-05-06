@@ -1,4 +1,4 @@
-package com.shark.example.encrypt;
+package com.Jordan.Example.encrypt;
 
 import org.apache.commons.net.util.Base64;
 

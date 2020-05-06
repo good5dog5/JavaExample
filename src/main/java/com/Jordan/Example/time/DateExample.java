@@ -1,4 +1,4 @@
-package com.shark.example.time;
+package com.Jordan.Example.time;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

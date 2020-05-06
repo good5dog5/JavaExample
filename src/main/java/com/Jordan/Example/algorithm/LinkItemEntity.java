@@ -1,4 +1,4 @@
-package com.shark.example.algorithm;
+package com.Jordan.Example.algorithm;
 
 public class LinkItemEntity {
     private String source;

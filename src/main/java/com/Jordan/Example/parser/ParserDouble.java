@@ -1,4 +1,4 @@
-package com.shark.example.parser;
+package com.Jordan.Example.parser;
 
 import java.math.BigDecimal;
 

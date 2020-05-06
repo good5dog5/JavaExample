@@ -1,4 +1,4 @@
-package com.shark.example;
+package com.Jordan.Example;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -10,6 +10,8 @@ import java.util.List;
 public class CheckExample {
     public static void main(String argv[]) {
         long startTime = System.currentTimeMillis();
+        System.out.println(startTime);
+
         List<CheckEntity> checkEntityList = new ArrayList<>();
         for(int i = 0; i < 60000; i++) {
             CheckEntity checkEntity = new CheckEntity(Arrays.asList("2018-11-20", "123", "abc"));

@@ -1,10 +1,10 @@
-package com.shark.example.parserSentence;
+package com.Jordan.Example.parserSentence;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.shark.example.parserSentence.grammar.Grammar;
-import com.shark.example.parserSentence.grammar.GrammarParser;
-import com.shark.example.parserSentence.grammar.GrammarTreeNode;
+import com.Jordan.Example.parserSentence.grammar.Grammar;
+import com.Jordan.Example.parserSentence.grammar.GrammarParser;
+import com.Jordan.Example.parserSentence.grammar.GrammarTreeNode;
 
 import java.util.Arrays;
 import java.util.HashMap;
