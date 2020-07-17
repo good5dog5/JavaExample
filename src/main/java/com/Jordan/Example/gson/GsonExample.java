@@ -14,5 +14,10 @@ public class GsonExample {
         System.out.println("json: " + json);
         HashMap<String, String> hashMap2 = gson.fromJson(json, new TypeToken<HashMap<String, String> >(){}.getType());
         System.out.println("value: " + hashMap2.get("abc"));
+
+        Demo demo = new Demo();
+        json = gson.toJson(demo);
+        System.out.println(json);
+
     }
 }
