@@ -25,7 +25,9 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NavigableMap;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -75,6 +77,31 @@ public class csvDataClean {
         put('柒', '7');
         put('捌', '8');
         put('玖', '9');
+    }};
+
+    private static final NavigableMap<Double, Double> thicknessRangeMap = new TreeMap<Double, Double>() {{
+        put(0d, 1.4d);
+        put(1.4d, 1.6d);
+        put(1.6d, 1.8d);
+        put(1.8d, 2d);
+        put(2d, 2.1d);
+        put(2.1d, 2.2d);
+        put(2.2d, 2.3d);
+        put(2.3d, 2.5d);
+        put(2.6d, 3.0d);
+        put(3.1d, 3.2d);
+        put(3.2d, 3.5d);
+        put(3.75d, 4.0d);
+        put(4.7d, 5d);
+        put(5d, 6d);
+        put(7d, 8d);
+        put(10d, 12d);
+        put(13d, 14d);
+        put(14d, 15d);
+        put(15d, 16d);
+        put(16d, 18d);
+        put(18d, 20d);
+
     }};
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
@@ -162,8 +189,8 @@ public class csvDataClean {
             return new ImmutablePair<>(-0.2, 0.2);
         }
 
-        double lowerBound = 0;
         double upperBound = 0;
+        double lowerBound = 0;
         String target = cell.getStringCellValue();
         Matcher matcher = thicknessDeviationPattern.matcher(target);
         List<String> result = new ArrayList<>();
@@ -179,11 +206,11 @@ public class csvDataClean {
                 double a = Double.parseDouble(result.get(0));
                 double b = Double.parseDouble(result.get(1));
                 if (a > b) {
-                    lowerBound = a;
-                    upperBound = b;
-                } else {
-                    lowerBound = b;
                     upperBound = a;
+                    lowerBound = b;
+                } else {
+                    upperBound = b;
+                    lowerBound = a;
                 }
             } catch (Exception e) {
                 System.out.println(rowNum + "转换行数字" + result.get(0) + " ; " + result.get(1));
@@ -192,15 +219,15 @@ public class csvDataClean {
             String frist = result.get(0).substring(0, 1);
             if (frist.equals("±")) {
                 try {
-                    lowerBound = Double.parseDouble(result.get(0).substring(1));
-                    upperBound = Double.parseDouble("-" + result.get(0).substring(1));
+                    upperBound = Double.parseDouble(result.get(0).substring(1));
+                    lowerBound = Double.parseDouble("-" + result.get(0).substring(1));
                 } catch (Exception e) {
                     System.out.println(rowNum + "转换行数字" + result.get(0));
                 }
             } else {
                 try {
-                    lowerBound = Double.parseDouble(result.get(0));
-                    upperBound = lowerBound;
+                    upperBound = Double.parseDouble(result.get(0));
+                    lowerBound = upperBound;
                 } catch (Exception e) {
                     System.out.println(rowNum + "转换行数字" + result.get(0));
                 }
@@ -210,26 +237,26 @@ public class csvDataClean {
                 double a = Double.parseDouble(result.get(0));
                 double b = Double.parseDouble(result.get(1));
                 double c = Double.parseDouble(result.get(2));
-                lowerBound = upperBound = a;
-                if (b > lowerBound) {
-                    lowerBound = b;
-                } else {
+                upperBound = lowerBound = a;
+                if (b > upperBound) {
                     upperBound = b;
-                }
-                if (c > lowerBound) {
-                    upperBound = lowerBound;
-                    lowerBound = c;
                 } else {
-                    if (c < upperBound) {
-                        upperBound = c;
+                    lowerBound = b;
+                }
+                if (c > upperBound) {
+                    lowerBound = upperBound;
+                    upperBound = c;
+                } else {
+                    if (c < lowerBound) {
+                        lowerBound = c;
                     }
                 }
             } catch (Exception e) {
                 System.out.println(rowNum + "转换行数字出错" + result.get(0));
             }
         } else {
-            lowerBound = 0.1;
-            upperBound = -0.1;
+            upperBound = 0.1;
+            lowerBound = -0.1;
         }
         return new ImmutablePair<>(lowerBound, upperBound);
     }
@@ -421,6 +448,13 @@ public class csvDataClean {
         }
     }
 
+    private static Double convertThickness(Cell cell) {
+        if (cell == null) {
+            return 20d;
+        }
+        return thicknessRangeMap.floorEntry(Double.valueOf(cell.getStringCellValue())).getValue();
+    }
+
     public static void readExcel(String inputFile, String outputFile) {
 
         if (!fileExist(inputFile)) {
@@ -430,26 +464,26 @@ public class csvDataClean {
 
         try (FileOutputStream outputStream = new FileOutputStream(outputFile)) {
 
-            Map<String, Integer> outputColumn2IndexMap = new LinkedHashMap<String, Integer>() {
-                {
-                    put("product_id", 0);
-                    put("market_property", 1);
-                    put("property_original_text", 2);
-                    put("dxf_id" ,3);
-                    put("length", 4);
-                    put("width", 5);
-                    put("thickness", 6);
-                    put("thickness_deviation", 7);
-                    put("cut_type", 8);
-                    put("composition", 9);
-                    put( "area", 10);
-                    put( "product_type", 11);
-                    put( "last_update_date", 12);
-                    put( "thickness_bias_lower", 13);
-                    put( "thickness_bias_upper", 14);
-                    put( "property", 15);
-                    put( "direction_type", 16);
-                }};
+            Map<String, Integer> outputColumn2IndexMap = new LinkedHashMap<String, Integer>() {{
+                put("product_id", 0);
+                put("market_property", 1);
+                put("property_original_text", 2);
+                put("dxf_id", 3);
+                put("length", 4);
+                put("width", 5);
+                put("thickness", 6);
+                put("thickness_deviation", 7);
+                put("cut_type", 8);
+                put("composition", 9);
+                put("area", 10);
+                put("product_type", 11);
+                put("last_update_date", 12);
+                put("thickness_bias_lower", 13);
+                put("thickness_bias_upper", 14);
+                put("property", 15);
+                put("direction_type", 16);
+                put("thickness_orig", 17);
+            }};
 
             outputStream.write((String.join(",", outputColumn2IndexMap.keySet())).getBytes());
             System.out.println("####### header: " + String.join(",", outputColumn2IndexMap.keySet()));
@@ -464,7 +498,7 @@ public class csvDataClean {
 
             // 行循环
             for (int inRowIdx = 1, outRowIdx = 1; inRowIdx <= rowsOfSheet; inRowIdx++, outRowIdx++) {
-                System.out.println(inRowIdx + " out");
+//                System.out.println(inRowIdx + " out");
                 Row inputRow = sheet.getRow(inRowIdx);
                 Row outputRow = outSheet.createRow(outRowIdx);
 
@@ -490,7 +524,7 @@ public class csvDataClean {
                 for(String factoryId : factoryUseCurrentProductList) {
 
 
-                    System.out.println(inRowIdx + "in");
+//                    System.out.println(inRowIdx + "in");
 
                     outputRow.createCell(outputColumn2IndexMap.get("product_id")).setCellValue(inputRow.getCell(indexOfCol("产品")).getStringCellValue() + "_F" + factoryId);
                     outputRow.createCell(outputColumn2IndexMap.get("market_property")).setCellValue(generateMarketProperty(inputRow.getCell(indexOfCol("市场属性"))));
@@ -498,7 +532,12 @@ public class csvDataClean {
                     outputRow.createCell(outputColumn2IndexMap.get("dxf_id")).setCellValue(generateDxfId(inputRow.getCell(indexOfCol("切割图"))));
                     outputRow.createCell(outputColumn2IndexMap.get("length")).setCellValue(inputRow.getCell(indexOfCol("长")).getStringCellValue());
                     outputRow.createCell(outputColumn2IndexMap.get("width")).setCellValue(inputRow.getCell(indexOfCol("宽")).getStringCellValue());
-                    outputRow.createCell(outputColumn2IndexMap.get("thickness")).setCellValue(inputRow.getCell(indexOfCol("厚")).getStringCellValue());
+                    outputRow.createCell(outputColumn2IndexMap.get("thickness")).setCellValue(convertThickness(inputRow.getCell(indexOfCol("厚"))));
+                    outputRow.createCell(outputColumn2IndexMap.get("thickness_orig")).setCellValue(inputRow.getCell(indexOfCol("厚")).getStringCellValue());
+                    outputRow.createCell(outputColumn2IndexMap.get("thickness_deviation")).setCellValue(inputRow.getCell(indexOfCol("厚度偏差")).getStringCellValue());
+
+//                    System.out.println(outputRow.getCell(outputColumn2IndexMap.get("thickness_orig")).getStringCellValue());
+
                     outputRow.createCell(outputColumn2IndexMap.get("area")).setCellValue(
                             BigDecimal.valueOf(Double.parseDouble(inputRow.getCell(indexOfCol("长")).getStringCellValue())).multiply(
                                     BigDecimal.valueOf(Double.parseDouble(inputRow.getCell(indexOfCol("宽")).getStringCellValue()))).divide(
@@ -507,10 +546,11 @@ public class csvDataClean {
 
                     Pair<Double, Double> thicknessPair = generateThicknessDeviation(inputRow.getCell(indexOfCol("厚度偏差")), inRowIdx);
                     outputRow.createCell(outputColumn2IndexMap.get("thickness_bias_lower")).setCellValue(thicknessPair.getLeft());
-                    outputRow.createCell(outputColumn2IndexMap.get("thickness_bias_lower")).setCellValue(thicknessPair.getRight());
+                    outputRow.createCell(outputColumn2IndexMap.get("thickness_bias_upper")).setCellValue(thicknessPair.getRight());
                     outputRow.createCell(outputColumn2IndexMap.get("cut_type")).setCellValue(generateCutType(inputRow.getCell(indexOfCol("切割类型"))));
                     outputRow.createCell(outputColumn2IndexMap.get("composition")).setCellValue(generateCompositionColor(inputRow.getCell(indexOfCol("原片组成"))));
                     outputRow.createCell(outputColumn2IndexMap.get("product_type")).setCellValue(generateProductType(inputRow.getCell(indexOfCol("产品类型"))));
+                    outputRow.createCell(outputColumn2IndexMap.get("last_update_date")).setCellValue(inputRow.getCell(indexOfCol("LAST_UPDATE_DATE")).getNumericCellValue());
 
 
                     output2File(outputStream, outputColumn2IndexMap, outputRow);
