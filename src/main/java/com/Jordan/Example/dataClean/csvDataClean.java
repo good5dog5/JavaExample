@@ -1,4 +1,4 @@
-package com.Jordan.Example;
+package com.Jordan.Example.dataClean;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
