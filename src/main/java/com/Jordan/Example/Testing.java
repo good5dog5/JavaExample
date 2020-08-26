@@ -1,5 +1,6 @@
 package com.Jordan.Example;
 
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -10,7 +11,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.NavigableMap;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class Testing {
     private static final Map<String, String> digitMap = new HashMap<String, String>() {{
@@ -43,6 +46,7 @@ public class Testing {
         put("玖", "9");
     }};
 
+
     public static void main(String[] args) throws ParseException {
 //        String aString = "G|G";
 //        String[] thickColorPair = aString.split("\\|");
@@ -63,27 +67,36 @@ public class Testing {
 //        String test = String.format("%.0f", Double.parseDouble("2.102") * 100)  + "aaa";
 //        System.out.println(test);
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date aDate = formatter.parse("2015-12-28 00:00:00");
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date aDate = formatter.parse("2015-12-28 00:00:00");
+//
+//        LocalDateTime localDateTime = LocalDateTime.ofInstant(aDate.toInstant(), ZoneId.of("UTC"));
+//        String value1 = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-'W'ww"));
+//        String value2 = localDateTime.format(DateTimeFormatter.ofPattern("YYYY-'W'ww"));
+//        System.out.println(value1);
+//        System.out.println(value2);
+//
+//        String orig = "一二五捌311八九";
+//        Set<Character> aSet = new HashSet<>();
+//
+//        for(String key : digitMap.keySet()) {
+//            orig = orig.replaceAll(key, digitMap.get(key));
+//        }
+//
+//        for(char c : orig.toCharArray()) {
+//            aSet.add(c);
+//        }
+//        System.out.println(orig);
+//        System.out.println(aSet);
 
-        LocalDateTime localDateTime = LocalDateTime.ofInstant(aDate.toInstant(), ZoneId.of("UTC"));
-        String value1 = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-'W'ww"));
-        String value2 = localDateTime.format(DateTimeFormatter.ofPattern("YYYY-'W'ww"));
-        System.out.println(value1);
-        System.out.println(value2);
+        String aString = "2.1G|1.6G446B";
+        String[] colors = aString.split("\\|");
+        System.out.println(colors);
 
-        String orig = "一二五捌311八九";
-        Set<Character> aSet = new HashSet<>();
+        for (String color : colors) {
+            System.out.println(color.replaceAll("\\d|\\.", ""));
 
-        for(String key : digitMap.keySet()) {
-            orig = orig.replaceAll(key, digitMap.get(key));
         }
-
-        for(char c : orig.toCharArray()) {
-            aSet.add(c);
-        }
-        System.out.println(orig);
-        System.out.println(aSet);
 
     }
 }

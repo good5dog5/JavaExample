@@ -1,4 +1,4 @@
-package com.Jordan.Example.reflection;
+package com.Jordan.Example.reflection.RetriveFieldExample;
 
 import lombok.Data;
 import lombok.Getter;
