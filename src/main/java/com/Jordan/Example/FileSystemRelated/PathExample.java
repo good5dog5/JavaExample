@@ -2,11 +2,14 @@ package com.Jordan.Example.FileSystemRelated;
 
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 public class PathExample {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Path currentWorkingPath = Paths.get("").toAbsolutePath();
         Path path = Paths.get(currentWorkingPath.toString() + "/file/"  + "band.txt");
@@ -26,5 +29,14 @@ public class PathExample {
         System.out.println("subPath(0, 2): " + path.subpath(0, 2));
         System.out.println("getParent(): " + path.getParent());
         System.out.println("getRoot(): " + path.getRoot());
+
+        Stream<Path> javaPaths = generatePaths();
+        javaPaths.forEach(System.out::println);
+    }
+
+    private static Stream<Path> generatePaths() throws IOException {
+        return Files.walk(Paths.get(""))
+                .filter(p -> p.getFileName().endsWith("java"));
+
     }
 }
