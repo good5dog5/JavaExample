@@ -1,101 +1,66 @@
 package com.Jordan.Example;
 
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.NavigableMap;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Testing {
-    private static final Map<String, String> digitMap = new HashMap<String, String>() {{
-        put("１", "1");
-        put("２", "2");
-        put("３", "3");
-        put("４", "4");
-        put("５", "5");
-        put("６", "6");
-        put("７", "7");
-        put("８", "8");
-        put("９", "9");
-        put("一", "1");
-        put("二", "2");
-        put("三", "3");
-        put("四", "4");
-        put("五", "5");
-        put("六", "6");
-        put("七", "7");
-        put("八", "8");
-        put("九", "9");
-        put("壹", "1");
-        put("貳", "2");
-        put("叁", "3");
-        put("肆", "4");
-        put("伍", "5");
-        put("陸", "6");
-        put("柒", "7");
-        put("捌", "8");
-        put("玖", "9");
-    }};
 
+    static Pattern algoIdPattern = Pattern.compile("\\d{17}_CM@(SGP|BG|SG)");
+    private static String extractAlgoId(String fileName) {
+        Matcher matcher = algoIdPattern.matcher(fileName);
 
-    public static void main(String[] args) throws ParseException {
-//        String aString = "G|G";
-//        String[] thickColorPair = aString.split("\\|");
-//        String[] pair = thickColorPair[0].split("((?<=[A-Za-z])|(?=[A-Za-z]))");
-//        System.out.println(pair.length == 2);
-//        System.out.println(Arrays.toString(thickColorPair));
-//        System.out.println(Arrays.toString(pair));
-//        System.out.println("done");
-//        System.out.println("done");
-//        Boolean testBoolean =  null;
-//        System.out.println(testBoolean);
+        if(matcher.find()) {
+            return matcher.group();
+        } else {
+            return null;
+        }
+    }
+    public static void main(String[] args) throws ParseException, IOException {
+//        List<String> fileNames = [
+        String [] fileNames = {
+                "3_ABB247035200485G_20200701114134247_CM@SGP_254_thumbnail.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_258.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_265.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_316_thumbnail.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_376.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_387_thumbnail.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_399_thumbnail.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_404.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_414.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_417.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_424.png",
+                "3_ABB247035200485G_20200701114134247_CM@SGP_431.png",
+                "3_ABB247035200485G_20200701114134247_CM@SG_431.png",
+                "3_ABB247035200485G_20200701114134247_CM@BM.png",
+                "3_ABB247035200485G_20200701114134247_CM@BG.png",
+                };
 
-//        boolean aBoolean = Boolean.parseBoolean("T");
-//        System.out.println(aBoolean);
-//        String aString = "2.1G|1.6G446B_machine";
-//        System.out.println(aString.split("_")[1]);
-
-//        String test = String.format("%.0f", Double.parseDouble("2.102") * 100)  + "aaa";
-//        System.out.println(test);
-
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        Date aDate = formatter.parse("2015-12-28 00:00:00");
-//
-//        LocalDateTime localDateTime = LocalDateTime.ofInstant(aDate.toInstant(), ZoneId.of("UTC"));
-//        String value1 = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-'W'ww"));
-//        String value2 = localDateTime.format(DateTimeFormatter.ofPattern("YYYY-'W'ww"));
-//        System.out.println(value1);
-//        System.out.println(value2);
-//
-//        String orig = "一二五捌311八九";
-//        Set<Character> aSet = new HashSet<>();
-//
-//        for(String key : digitMap.keySet()) {
-//            orig = orig.replaceAll(key, digitMap.get(key));
+        List<Path> cmFilePaths = Files.walk(Paths.get("/opt/fuGlass/commonMaterial"))
+                .filter(p -> !Files.isDirectory(p))
+                .collect(Collectors.toList());
+//        for(Path filePath : cmFilePaths) {
+////            System.out.println(filePath.getFileName().toString() + " | " + extractAlgoId(filePath.getFileName().toString()));
+//            if(extractAlgoId(filePath.getFileName().toString()) == null) {
+//                System.out.println(filePath.getFileName().toString());
+////                FileUtils.deleteQuietly(filePath.toFile());
+//                System.out.println(filePath.toString());
+//            }
 //        }
-//
-//        for(char c : orig.toCharArray()) {
-//            aSet.add(c);
-//        }
-//        System.out.println(orig);
-//        System.out.println(aSet);
 
-        String aString = "2.1G|1.6G446B";
-        String[] colors = aString.split("\\|");
-        System.out.println(colors);
-
-        for (String color : colors) {
-            System.out.println(color.replaceAll("\\d|\\.", ""));
-
+        for (String filenmae : fileNames) {
+            if(extractAlgoId(filenmae) != null) {
+                System.out.println(extractAlgoId(filenmae));
+            } else {
+                System.out.println("Null");
+            }
         }
 
     }
