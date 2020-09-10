@@ -49,7 +49,7 @@ class E7SumFirstNum implements Callable<Integer> {
             sum += i;
 
             try {
-                Thread.sleep(2);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
