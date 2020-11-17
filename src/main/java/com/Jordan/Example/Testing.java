@@ -23,6 +23,12 @@ public class Testing {
             return null;
         }
     }
+
+    private static void testCharArray() {
+        char[] charArray = ")]}'\n".toCharArray();
+        System.out.println(charArray);
+
+    }
     public static void main(String[] args) throws ParseException, IOException {
 //        List<String> fileNames = [
         String [] fileNames = {
@@ -62,6 +68,11 @@ public class Testing {
                 System.out.println("Null");
             }
         }
+        testCharArray();
 
+        for(int i=0; i<=0x1f; i++) {
+            System.out.println(i);
+            System.out.println(String.format("\\u%04x", (int) i));
+        }
     }
 }
