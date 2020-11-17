@@ -49,6 +49,7 @@ public class csvDataClean {
         put("茶", "Z");
         put("LOW-E", "C");
     }};
+
     private static final Map<Character, Character> digitMap = new HashMap<Character, Character>() {{
         put('１', '1');
         put('２', '2');
@@ -560,5 +561,11 @@ public class csvDataClean {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static void testChar() {
+        Character a = 'A';
+        System.out.println(a);
+
     }
 }
